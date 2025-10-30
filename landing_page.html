@@ -1,0 +1,366 @@
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Guilda dos Jogos — Aluguel de Jogos de Tabuleiro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aluguel de jogos de tabuleiro premium com curadoria, exclusividade e entrega flexível. Conforto e autoridade da Guilda dos Jogos.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #e2e8f0;
+      --primary: #0f766e;
+      --primary-contrast: #ffffff;
+      --accent: #0891b2;
+      --surface: #f8fafc;
+      --radius: 10px;
+      --shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(15,23,42,.06);
+      --container: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 16px; }
+    .skip-link {
+      position: absolute; left: -9999px; top: -9999px;
+    }
+    .skip-link:focus {
+      left: 8px; top: 8px; background: var(--text); color: #fff; padding: 8px 12px; border-radius: 6px; z-index: 1000;
+    }
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-name { font-weight: 700; font-size: 1rem; white-space: nowrap; }
+    nav[aria-label="principal"] ul {
+      list-style: none; margin: 0; padding: 0; display: flex; gap: 16px; align-items: center;
+    }
+    nav[aria-label="principal"] a {
+      text-decoration: none; color: var(--muted); font-weight: 600;
+    }
+    nav[aria-label="principal"] a:hover { color: var(--text); }
+    /* Hero */
+    .hero {
+      display: grid; gap: 20px; padding: 28px 0; align-items: center;
+    }
+    .hero h1 { font-size: 1.8rem; line-height: 1.2; margin: 12px 0 8px; }
+    .hero p.sub { color: var(--muted); margin: 0 0 16px; }
+    .cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .btn {
+      appearance: none; border: 0; cursor: pointer; font-weight: 700;
+      padding: 12px 16px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+    }
+    .btn-primary { background: var(--primary); color: var(--primary-contrast); }
+    .btn-primary:hover { background: #0b5f59; }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .badge {
+      background: var(--surface); border: 1px solid var(--line); padding: 6px 10px; border-radius: 999px; color: var(--muted); font-size: .875rem;
+    }
+    .hero-media {
+      border: 1px dashed var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    /* Sections */
+    section { padding: 28px 0; }
+    .sec-title { font-size: 1.25rem; margin: 16px 0 12px; }
+    .muted { color: var(--muted); }
+    /* Cards / grids */
+    .grid-3 { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    .card {
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; background: #fff; box-shadow: var(--shadow);
+    }
+    .card h3 { margin: 12px 0 6px; font-size: 1.05rem; }
+    .kpi { font-weight: 800; color: var(--text); }
+    .logos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: center; }
+    .steps { display: grid; gap: 12px; grid-template-columns: 1fr; counter-reset: step; }
+    .step { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; background: #fff; box-shadow: var(--shadow); position: relative; }
+    .step h3 { margin: 12px 0 6px; }
+    .step::before {
+      counter-increment: step; content: counter(step);
+      position: absolute; top: -12px; left: -12px; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--accent); color: #fff; display: grid; place-content: center; font-weight: 800; box-shadow: var(--shadow);
+    }
+    .guarantees { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    .guarantee { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; background: #f9f9fb; }
+    details { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; background: #fff; }
+    details + details { margin-top: 8px; }
+    summary { cursor: pointer; font-weight: 700; }
+    /* Form */
+    form { display: grid; gap: 10px; }
+    .field { display: grid; gap: 6px; }
+    label { font-weight: 600; }
+    input, select, textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit; background: #fff;
+    }
+    .inline { display: grid; gap: 10px; grid-template-columns: 1fr; }
+    .form-note { font-size: .875rem; color: var(--muted); }
+    .trust-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .trust-seal {
+      border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: #fff; font-size: .9rem;
+    }
+    /* Footer */
+    footer { border-top: 1px solid var(--line); background: var(--surface); }
+    .foot { display: grid; gap: 8px; padding: 16px 0; }
+    .fine { color: var(--muted); font-size: .875rem; }
+    /* Responsive */
+    @media (min-width: 640px) {
+      .hero { grid-template-columns: 1.2fr .8fr; gap: 24px; padding: 40px 0; }
+      .hero h1 { font-size: 2rem; }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .logos { grid-template-columns: repeat(6, 1fr); }
+      .steps { grid-template-columns: repeat(3, 1fr); }
+      .guarantees { grid-template-columns: repeat(3, 1fr); }
+      .inline { grid-template-columns: 1fr 1fr; }
+      .foot { grid-template-columns: 2fr 1fr; align-items: center; }
+    }
+    /* Utility */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .highlight { color: var(--accent); font-weight: 800; }
+    .note { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; border-radius: 8px; padding: 8px 10px; font-size: .9rem; }
+    /* Espaço vertical adicional entre títulos */
+    h1, h2, h3 { margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#reserva">Pular para o CTA principal</a>
+
+  <header role="banner">
+    <div class="container nav" aria-label="topo">
+      <div class="brand">
+        <img src="logo_principal.png" alt="Guilda dos Jogos — Logotipo" width="120" height="40" loading="lazy">
+        <span class="brand-name" aria-label="Nome da marca">Guilda dos Jogos</span>
+      </div>
+      <nav aria-label="principal">
+        <ul>
+          <li><a href="#beneficios">benefícios</a></li>
+          <li><a href="#como-funciona">como funciona</a></li>
+          <li><a href="#faq">faq</a></li>
+          <li><a href="#reserva" class="btn btn-primary" aria-label="Ir para o formulário de reserva">Alugue agora!</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+    <!-- Hero -->
+    <section id="hero" class="hero container" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">Aluguel de jogos de tabuleiro premium com curadoria especializada</h1>
+        <p class="sub">Exclusividade do acervo, autoridade de quem entende do hobby e o conforto de receber em casa. Suporte para regras.</p>
+        <div class="cta-row" role="group" aria-label="chamada para ação">
+          <a href="#reserva" class="btn btn-primary" aria-describedby="cta-benefit">Alugue agora!</a>
+          <span id="cta-benefit" class="muted">sem fidelidade • sem caução para membros</span>
+        </div>
+        <div class="badges" aria-label="provas e diferenciais">
+          <span class="badge">5.000+ locações concluídas</span>
+          <span class="badge">Acervo curado: família a expert</span>
+          <span class="badge">Entrega e retirada flexíveis</span>
+        </div>
+      </div>
+      <div class="hero-media" aria-hidden="true">
+        <img
+          src="generated-image.jpeg"
+          alt="" width="640" height="420" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section id="beneficios" aria-labelledby="beneficios-title" class="container">
+      <h2 id="beneficios-title" class="sec-title">Por que alugar na Guilda dos Jogos</h2>
+      <div class="grid-3" role="list">
+        <article class="card" role="listitem" aria-labelledby="b1">
+          <h3 id="b1">Economia mensurável</h3>
+          <p class="muted">Até <span class="kpi">80% de economia</span> versus comprar jogos novos. Pague só quando for jogar.</p>
+        </article>
+        <article class="card" role="listitem" aria-labelledby="b2">
+          <h3 id="b2">Conveniência real</h3>
+          <p class="muted"><span class="kpi">Entrega em até 2h</span> em regiões selecionadas e horários estendidos de retirada.</p>
+        </article>
+        <article class="card" role="listitem" aria-labelledby="b3">
+          <h3 id="b3">Qualidade garantida</h3>
+          <p class="muted">Conferência <span class="kpi">100% das peças</span> entre locações. Suporte para dúvidas de regras.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Prova social -->
+    <section id="prova" aria-labelledby="prova-title" class="container">
+      <h2 id="prova-title" class="sec-title">Autoridade reconhecida pela comunidade</h2>
+      <div class="logos" aria-label="parceiros e imprensa">
+        <img src="logo_1.png" alt="Parceiro 1" width="140" height="44" loading="lazy">
+        <img src="logo_2.png" alt="Parceiro 2" width="140" height="44" loading="lazy">
+        <img src="logo_3.png" alt="Parceiro 3" width="140" height="44" loading="lazy">
+        <img src="logo_4.png" alt="Parceiro 4" width="140" height="44" loading="lazy">
+        <img src="logo_5.png" alt="Parceiro 5" width="140" height="44" loading="lazy">
+        <img src="logo_6.png" alt="Parceiro 6" width="140" height="44" loading="lazy">
+      </div>
+      <div class="card" style="margin-top:12px;">
+        <p class="muted" aria-label="depoimento curto">“Acervo impecável e atendimento que entende do jogo. Foi só abrir a caixa e jogar.” — <strong>Marina C.</strong>, 12 locações</p>
+      </div>
+    </section>
+
+    <!-- Como funciona -->
+    <section id="como-funciona" aria-labelledby="como-title" class="container">
+      <h2 id="como-title" class="sec-title">Como funciona em 3 passos</h2>
+      <div class="steps" role="list">
+        <article class="step" role="listitem">
+          <h3>Escolha o jogo</h3>
+          <p class="muted">Navegue pelo acervo por categoria, duração e número de jogadores.</p>
+        </article>
+        <article class="step" role="listitem">
+          <h3>Receba e jogue</h3>
+          <p class="muted">Entrega no endereço combinado ou retirada na loja, com guia rápido de regras.</p>
+        </article>
+        <article class="step" role="listitem">
+          <h3>Devolva sem burocracia</h3>
+          <p class="muted">Agende a coleta ou devolva na loja. Conferência rápida e confirmação por e-mail.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Garantias e selos -->
+    <section id="garantias" aria-labelledby="garantias-title" class="container">
+      <h2 id="garantias-title" class="sec-title">Garantias e selos de confiança</h2>
+      <div class="guarantees" role="list">
+        <div class="guarantee" role="listitem">
+          <strong>Garantia de Peças</strong>
+          <p class="muted">Reposição ou crédito imediato em casos de peças faltantes na chegada.</p>
+        </div>
+        <div class="guarantee" role="listitem">
+          <strong>Satisfação 7 dias</strong>
+          <p class="muted">Não curtiu? Troca sem custo em até 7 dias em planos elegíveis.</p>
+        </div>
+        <div class="guarantee" role="listitem">
+          <strong>Checkout seguro</strong>
+          <p class="muted">Pagamentos criptografados e dados protegidos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" aria-labelledby="faq-title" class="container">
+      <h2 id="faq-title" class="sec-title">FAQ — tire suas dúvidas</h2>
+      
+      
+      
+      
+      
+      
+    </section>
+
+    <!-- Bloco de urgência (opcional; timer sem dependências) -->
+    <section aria-label="oferta por tempo limitado" class="container" id="oferta">
+      <div class="note" role="status" aria-live="polite">
+        Oferta de primeira locação ativa. Tempo restante: <strong id="timer">—:—</strong>
+      </div>
+    </section>
+
+    <!-- CTA final / Reserva -->
+    <section id="reserva" aria-labelledby="reserva-title" class="container">
+      <h2 id="reserva-title" class="sec-title">Pronto para jogar hoje?</h2>
+      <p class="muted">Preencha os dados e confirme sua locação. Resposta rápida pelo WhatsApp.</p>
+
+      <form aria-describedby="seguro-nota">
+        <div class="inline">
+          <div class="field">
+            <label for="nome">nome completo</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome" required>
+          </div>
+          <div class="field">
+            <label for="whats">whatsapp</label>
+            <input id="whats" name="whatsapp" type="tel" inputmode="tel" placeholder="(xx) xxxxx-xxxx" required>
+          </div>
+        </div>
+        <div class="inline">
+          <div class="field">
+            <label for="email">e-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="voce@email.com">
+          </div>
+          <div class="field">
+            <label for="bairro">bairro / cidade</label>
+            <input id="bairro" name="bairro" type="text" placeholder="Seu bairro/cidade">
+          </div>
+        </div>
+        <div class="inline">
+          <div class="field">
+            <label for="jogo">jogo desejado</label>
+            <select id="jogo" name="jogo" required>
+              <option value="">selecione</option>
+              <option>Ticket to Ride</option>
+              <option>Catan</option>
+              <option>Dixit</option>
+              <option>Azul</option>
+              <option>Gloomhaven</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="data">data desejada</label>
+            <input id="data" name="data" type="date" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="obs">observações (opcional)</label>
+          <textarea id="obs" name="observacoes" rows="3" placeholder="Preferências de horário, entrega/retirada, etc."></textarea>
+        </div>
+        <div class="trust-row" style="margin-top:6px;">
+          <span class="trust-seal">SSL ativo</span>
+          <span class="trust-seal">Sem spam</span>
+          <span class="trust-seal">Política de privacidade</span>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; margin-top:8px;">
+          <button type="submit" class="btn btn-primary" aria-label="Enviar e confirmar a locação">Alugue agora!</button>
+          <a href="#faq" class="btn btn-ghost">ver condições</a>
+        </div>
+        <p id="seguro-nota" class="form-note">Dados protegidos. Você receberá confirmação por e-mail e WhatsApp.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container foot">
+      <div>
+        <strong>Guilda dos Jogos</strong>
+        <p class="fine">CNPJ 00.000.000/0000-00 • Rua Exemplo, 123 • Centro</p>
+        <p class="fine">Atendimento: seg–sáb 10h–20h • suporte@guildadejogos.net • (11) 0000-0000</p>
+      </div>
+      <div>
+        <p class="fine">© <span id="ano">2025</span> Guilda dos Jogos. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Opcional: Timer simples de 15 minutos para urgência e ajuste do ano no rodapé
+    (function () {
+      var timerEl = document.getElementById('timer');
+      var end = Date.now() + 15 * 60 * 1000; // 15 minutos
+      function pad(n){ return n < 10 ? '0'+n : ''+n; }
+      function tick() {
+        var remain = Math.max(0, end - Date.now());
+        var m = Math.floor(remain / 60000);
+        var s = Math.floor((remain % 60000) / 1000);
+        if (timerEl) timerEl.textContent = pad(m) + ':' + pad(s);
+        if (remain > 0) requestAnimationFrame(tick);
+      }
+      tick();
+      var ano = document.getElementById('ano');
+      if (ano) ano.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
